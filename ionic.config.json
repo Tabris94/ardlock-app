@@ -1,0 +1,7 @@
+{
+  "name": "Ardulock",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular"
+}
