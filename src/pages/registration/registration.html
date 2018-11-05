@@ -21,7 +21,7 @@
     <p *ngIf="email.hasError('required') && email.touched">Email obbligatorio</p>
     <ion-label>Password</ion-label>
     <ion-input formControlName='password' type='password' minLenght='6' placeholder="********" ></ion-input>
-    <p *ngIf="password.hasError('required') && email.touched">Email obbligatorio</p>
+    <p *ngIf="password.hasError('required') && password.touched">Password obbligatorio</p>
     <ion-label>Conferma Password</ion-label>
     <ion-input type='password' formControlName='passwordconfirm' placeholder="********" ></ion-input>
     <p *ngIf="flag==true">Le password non coincidono</p>

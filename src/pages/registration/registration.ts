@@ -24,11 +24,11 @@ export class RegistrationPage {
   constructor(public navCtrl: NavController, public navParams: NavParams, public formbuilder: FormBuilder, public http: HttpClient) {
   
     this.formgroup = this.formbuilder.group({
-      firstname: ['andrea', Validators.required],
-      lastname: ['cipollaro',Validators.required],
-      email: ['a.cipollaro@outlook.it',Validators.required],
-      password: ['arduino29',Validators.compose([Validators.minLength(6), Validators.required])],
-      passwordconfirm: ['arduino29',Validators.compose([Validators.minLength(6), Validators.required])],
+      firstname: ['', Validators.required],
+      lastname: ['',Validators.required],
+      email: ['',Validators.required],
+      password: ['',Validators.compose([Validators.minLength(6), Validators.required])],
+      passwordconfirm: ['',Validators.compose([Validators.minLength(6), Validators.required])],
     })
 
     this.firstname = this.formgroup.controls['firstname'];
@@ -37,10 +37,7 @@ export class RegistrationPage {
     this.password  = this.formgroup.controls['password'];
     this.passwordconfirm = this.formgroup.controls['passwordconfirm'];
   }
-
-  ionViewDidLoad() {
-  }
-
+  
   validate(){
     if(this.password.value!=this.passwordconfirm.value) this.flag=true;
     else this.send();
