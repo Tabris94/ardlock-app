@@ -10,6 +10,9 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { RegistrationPage } from '../pages/registration/registration';
 import { LoginPage } from '../pages/login/login';
+import { CheckSetupPage } from '../pages/check-setup/check-setup';
+import { SetupPage } from '../pages/setup/setup';
+import { LogPage } from '../pages/log/log';
 
 @NgModule({
   declarations: [
@@ -17,6 +20,9 @@ import { LoginPage } from '../pages/login/login';
     HomePage,
     LoginPage,
     RegistrationPage,
+    CheckSetupPage,
+    SetupPage,
+    LogPage,
   ],
   imports: [
     BrowserModule,
@@ -30,6 +36,9 @@ import { LoginPage } from '../pages/login/login';
     HomePage,
     LoginPage,
     RegistrationPage,
+    CheckSetupPage,
+    SetupPage,
+    LogPage,
   ],
   providers: [
     StatusBar,
