@@ -1,14 +1,34 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>
-      Ionic Blank
-    </ion-title>
-  </ion-navbar>
+  <ion-row class="header" align-items-center>
+    <h1>ArduLock</h1>
+    <button class="navbarBtn" (click)="add()"> 
+      <ion-icon name="add"></ion-icon>
+    </button>
+  </ion-row>
 </ion-header>
 
-<ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+
+<ion-content>
+  <h2 *ngIf="firstlabel == ''" >Non ci sono dispositivi associati</h2>
+  <div class="content" *ngIf="firstlabel != ''">
+    <ion-row class="element" align-items-center>
+      <p class="label"> {{this.labelFirst}} </p>
+      <ion-toggle [(ngModel)]="statusFirst"  color="secondary" (click)="change()"></ion-toggle>
+    </ion-row>
+    <ion-row class="separator"></ion-row>
+    <ion-row class="element" align-items-center>
+      <p class="label">{{this.labelSecond}}</p>
+      <ion-toggle [(ngModel)]="statusSecond" color="secondary" (click)="change()"></ion-toggle>
+    </ion-row>
+    <ion-row class="separator"></ion-row>
+  </div>
+  <ion-row class="bottomBar">
+    <button (click)="lock()">
+      <ion-icon *ngIf="!(statusFirst&&statusSecond)"  name="lock"></ion-icon>
+      <ion-icon *ngIf="statusFirst&&statusSecond" name="unlock"></ion-icon>
+    </button>
+    <button (click)="log()">
+        <ion-icon name="list-box"></ion-icon>
+    </button>
+  </ion-row>
 </ion-content>
