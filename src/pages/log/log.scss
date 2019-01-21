@@ -1,0 +1,66 @@
+page-log {
+    ion-header{
+        background-color: #0081c7;
+    }
+
+    h1{
+        color:white;
+        margin: 2rem 3rem;
+    }
+
+    h2{
+        font-size: 32px;
+        color: #808080;
+        text-align: center;
+    }
+
+    p{
+        white-space: normal;
+    }
+    
+    .label{
+        margin: 2rem 2rem;
+        font-size: 2.5rem;
+        color: #333333;
+        flex:1;
+    }
+
+    .separator{
+        margin:0 2rem;
+        background-color: #0081c7;
+        height: 1px;;
+    }
+
+    .element{
+        margin: 1rem 0; 
+    }
+
+    ion-toggle{
+        margin: 0 2rem;
+    }
+
+    .bottomBar{
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        left: 0; 
+    }
+    
+    button{
+        flex:1;
+        height: 8rem;
+        background-color: #0081c7;
+        color: white;
+        font-size: 3rem;
+    }
+
+    .navbarBtn{
+        flex: none;
+        position: absolute;
+        right: 0;
+        height: auto;
+        padding: 10px;
+        padding-right:3rem;
+        font-size: 26px;
+    }
+}
