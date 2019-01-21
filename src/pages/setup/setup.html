@@ -1,0 +1,38 @@
+<ion-content>
+  <form [formGroup] = 'formgroup' class="page">
+    <div *ngIf="step==0">
+      <h1>Inserisci la password dell' account</h1>
+      <ion-input type="password" formControlName='passwordAccount' placeholder="******"></ion-input>
+      <ion-row justify-content-center>
+        <p *ngIf="passwordAccount.hasError('required') && passwordAccount.touched">Password Obbligatoria</p> 
+      </ion-row>
+      <ion-row >
+        <button (click)="stepForward()">AVANTI</button>
+      </ion-row>
+    </div>
+    <div *ngIf="step==1">
+        <h1>Configurazione Sensori</h1>
+        <ion-label>Etichetta Sensore 1</ion-label>
+        <ion-input formControlName="label1" placeholder="Soggiorno"></ion-input>
+        <p *ngIf="label1.hasError('required') && label1.touched">Campo Obbligatorio</p> 
+        <ion-label>Etichetta Sensore 2</ion-label>
+        <ion-input formControlName="label2" placeholder="Cucina"></ion-input>
+        <p *ngIf="label2.hasError('required') && label2.touched">Campo Obbligatorio</p> 
+        <ion-row>
+          <button (click)="stepForward()">AVANTI</button>
+        </ion-row>
+    </div>
+    <div *ngIf="step==2">
+      <h1>Imposta Password Di Sblocco</h1>
+      <ion-label>Password</ion-label>
+      <ion-input type="password" formControlName="password" placeholder="******"></ion-input>
+      <p *ngIf="password.hasError('required') && password.touched">Campo Obbligatorio</p> 
+      <ion-label>Conferma Password</ion-label>
+      <ion-input type="password" formControlName="passwordConfirm" placeholder="******"></ion-input>
+      <p *ngIf="passwordConfirm.hasError('required') && passwordConfirm.touched">Campo Obbligatorio</p> 
+      <ion-row>
+        <button (click) ="stepForward()">AVANTI</button>
+      </ion-row>
+    </div>
+  </form>
+</ion-content>
