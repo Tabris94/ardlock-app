@@ -1,7 +1,9 @@
 import { Component, Injectable } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
-import { HttpClient } from '@angular/common/http'
+import { HttpClient } from '@angular/common/http';
+import { Storage } from '@ionic/storage';
+import { HomePage } from '../home/home';
 
 @IonicPage()
 @Component({
@@ -21,7 +23,7 @@ export class RegistrationPage {
   flag = false;
   
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public formbuilder: FormBuilder, public http: HttpClient) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public formbuilder: FormBuilder, public http: HttpClient,private storage: Storage,) {
   
     this.formgroup = this.formbuilder.group({
       firstname: ['', Validators.required],
@@ -56,6 +58,25 @@ export class RegistrationPage {
     }
 
     let request = this.http.post('http://127.0.0.1:5000/Api/App/registration',body,{headers:headers});
-    request.subscribe((response) => console.log(response));
+    request.subscribe(() => this.login());
+  }
+
+  login(){
+    let body = {
+      email: this.email.value,
+      password: this.password.value,
+    }
+
+    let headers = {
+      'Content-Type' : 'application/json'
+    }
+
+    let request = this.http.post('http://127.0.0.1:5000/Api/App/login',body,{headers:headers});
+    request.subscribe((response) => this.memorize(response), (error) => console.log(error.status))
+  }
+
+  memorize(token){
+    this.storage.set('token', token.token);
+    this.navCtrl.push(HomePage);
   }
 }

@@ -45,12 +45,12 @@ export class LoginPage {
     }
 
     let request = this.http.post('http://127.0.0.1:5000/Api/App/login',body,{headers:headers});
-    request.subscribe((response) => this.memorize(response.token), (error) => console.log(error.status))
+    request.subscribe((response) => this.memorize(response), (error) => console.log(error.status))
 
   }
 
   memorize(token){
-    this.storage.set('token', token);
+    this.storage.set('token', token.token);
     this.navCtrl.push(HomePage);
   }
 
