@@ -57,7 +57,7 @@ export class RegistrationPage {
       'Content-Type' : 'application/json'
     }
 
-    let request = this.http.post('http://127.0.0.1:5000/Api/App/registration',body,{headers:headers});
+    let request = this.http.post('http://3.89.126.2:5000/Api/App/registration',body,{headers:headers});
     request.subscribe(() => this.login());
   }
 
@@ -71,12 +71,13 @@ export class RegistrationPage {
       'Content-Type' : 'application/json'
     }
 
-    let request = this.http.post('http://127.0.0.1:5000/Api/App/login',body,{headers:headers});
+    let request = this.http.post('http://3.89.126.2:5000/Api/App/login',body,{headers:headers});
     request.subscribe((response) => this.memorize(response), (error) => console.log(error.status))
   }
 
   memorize(token){
     this.storage.set('token', token.token);
+    this.storage.set('email', this.email.value);
     this.navCtrl.push(HomePage);
   }
 }
