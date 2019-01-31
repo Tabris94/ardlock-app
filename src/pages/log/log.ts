@@ -17,7 +17,7 @@ export class LogPage {
   }
 
   token;
-  logs = [];
+  logs;
 
   getToken(){
     this.storage.get('token').then((val) =>  {this.token = val; this.get();});
@@ -34,8 +34,8 @@ export class LogPage {
     let body ={
       token: this.token
     }
-    let request = this.http.post('http://127.0.0.1:5000/Api/App/getLog',body,{headers:headers});
-    request.subscribe((response) => { console.log(response)});
+    let request = this.http.post('http://3.89.126.2:5000/Api/App/getLog',body,{headers:headers});
+    request.subscribe((response) => { this.logs = response; console.log(response)});
   }
 
   back(){
