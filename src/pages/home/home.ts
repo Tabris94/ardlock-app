@@ -41,9 +41,9 @@ export class HomePage {
       'Content-Type' : 'application/json'
     }
 
-    let request = this.http.post('http://127.0.0.1:5000/Api/App/getArdulocks',body,{headers:headers});
+    let request = this.http.post('http://3.89.126.2:5000/Api/App/getArdulocks',body,{headers:headers});
     request.subscribe((response) => this.getDevice(response), (error) => {
-      if(error.status != 401){
+      if(error.status == 401){
           this.sessionExspired();  
           this.alertController.create({
             title: "Sessione Scaduta",
@@ -62,29 +62,8 @@ export class HomePage {
   }
 
   add(){
-    this.alert = this.alertController.create({
-      title: 'Inserisci la password di sicurezza',
-      buttons: [{
-                text:'Conferma',
-                handler: data => { this.password = data.password },
-              }],
-      inputs: [
-        {
-          name: 'password',
-          placeholder: 'Password',
-          type: 'password',
-        }
-      ],
-    });
-    this.alert.onDidDismiss(()=>{
-      this.navCtrl.push(CheckSetupPage);
-    });
-    if(this.password=="") this.alert.present();
-    else this.navCtrl.push(CheckSetupPage);
-  }
-
-  getPassowrd(){
-      let alert = this.alertController.create({
+    if(this.password != ''){
+      this.alert = this.alertController.create({
         title: 'Inserisci la password di sicurezza',
         buttons: [{
                   text:'Conferma',
@@ -98,15 +77,36 @@ export class HomePage {
           }
         ],
       });
+      this.alert.onDidDismiss(()=>{
+        this.navCtrl.push(CheckSetupPage);
+      });
+      if(this.password=="") this.alert.present();
+      else this.navCtrl.push(CheckSetupPage);
+    }
+    else this.navCtrl.push(CheckSetupPage);
+  }
+
+  getPassowrd(){
+    console.log("adasda")
+      let alert = this.alertController.create({
+        title: 'Inserisci la password di sicurezza',
+        buttons: [{
+                  text:'Conferma',
+                  handler: data => { this.password = data.password },
+                }],
+        inputs: [
+          { 
+            name: 'password',
+            placeholder: 'Password',
+            type: 'password',
+          }
+        ],
+      });
       alert.onDidDismiss(() => {
         this.sendStatusChange();
       })
       if(this.password=="") alert.present();
       else this.sendStatusChange()
-  }
-
-  change(){
-    this.getPassowrd();
   }
 
   sendStatusChange(){
@@ -121,7 +121,7 @@ export class HomePage {
       'Content-Type' : 'application/json'
     };
 
-    let request = this.http.post('http://127.0.0.1:5000/Api/App/setStatus',body,{headers:headers});
+    let request = this.http.post('http://3.89.126.2:5000/Api/App/setStatus',body,{headers:headers});
       request.subscribe(() => {}, (error) => {
         let alert2;
         if(error.status = 400){

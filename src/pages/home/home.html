@@ -9,20 +9,20 @@
 
 
 <ion-content>
-  <h2 *ngIf="firstlabel == ''" >Non ci sono dispositivi associati</h2>
-  <div class="content" *ngIf="firstlabel != ''">
+  <h2 *ngIf="labelFirst == undefined" >Non ci sono dispositivi associati</h2>
+  <div class="content" *ngIf="labelFirst != undefined">
     <ion-row class="element" align-items-center>
       <p class="label"> {{this.labelFirst}} </p>
-      <ion-toggle [(ngModel)]="statusFirst"  color="secondary" (click)="change()"></ion-toggle>
+      <ion-toggle [(ngModel)]="statusFirst"  color="secondary" (ionChange)="getPassowrd()"></ion-toggle>
     </ion-row>
     <ion-row class="separator"></ion-row>
     <ion-row class="element" align-items-center>
       <p class="label">{{this.labelSecond}}</p>
-      <ion-toggle [(ngModel)]="statusSecond" color="secondary" (click)="change()"></ion-toggle>
+      <ion-toggle [(ngModel)]="statusSecond" color="secondary" (ionChange)="getPassowrd()"></ion-toggle>
     </ion-row>
     <ion-row class="separator"></ion-row>
   </div>
-  <ion-row class="bottomBar">
+  <ion-row *ngIf="labelFirst != undefined" class="bottomBar">
     <button (click)="lock()">
       <ion-icon *ngIf="!(statusFirst&&statusSecond)"  name="lock"></ion-icon>
       <ion-icon *ngIf="statusFirst&&statusSecond" name="unlock"></ion-icon>
