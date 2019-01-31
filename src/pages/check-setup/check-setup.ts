@@ -1,13 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { SetupPage } from '../setup/setup';
-
-/**
- * Generated class for the CheckSetupPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { HttpClient} from '@angular/common/http';
 
 @IonicPage()
 @Component({
@@ -16,11 +10,14 @@ import { SetupPage } from '../setup/setup';
 })
 export class CheckSetupPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public http: HttpClient) {
   }
 
-  ionViewDidLoad() {
-    this.navCtrl.push(SetupPage);
+  ionViewDidLoad() {  
+    let body = {
+      isAvaiable: 'getStatus'
+    }
+    this.http.post('http://192.168.0.1:80',JSON.stringify(body)).subscribe(() => {this.navCtrl.push(SetupPage)});
   }
 
 }
