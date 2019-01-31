@@ -1,0 +1,82 @@
+page-login {
+
+    .body{
+        background-color: #1a8adb;
+    }
+
+    .scroll-content{
+        height: 1000px;
+    }
+
+    form{
+        background-color: #1a8adb;
+        width: 100%;
+        height: 100%;
+    }
+
+    ion-img{
+        margin: 3rem 0;
+        width: 10rem;
+        height: 10rem;
+        background-color: rgba(0,0,0,0);
+        justify-content: center;
+    }
+
+    h1{
+        font-size: 3rem;
+        color: white;
+        text-transform: uppercase;
+        text-align: center;
+    }
+
+    ion-label{
+        color: white;
+        font-size: 1rem;
+        padding-top: 1rem;
+        padding-left: 4rem;
+    }
+
+    ion-input{
+        height: 5rem;
+        padding-left: 1rem;
+        border-bottom: 1px white solid;
+        font-size: 1.5rem;
+        margin: 0 4rem;
+        width:auto;
+        color:white;
+    }
+
+    .btn{
+        width: 200px;
+        height: 50px;
+        background-color: white;
+        border-radius: 10px;
+        color: #1a8adb;
+        text-transform: uppercase;
+        font-size: 14px;
+        letter-spacing: 1px;
+        margin: 4rem 0;
+    }
+
+    p{
+        color:white;
+        font-size: 1rem; 
+        padding-left: 4rem;
+    }
+
+    .text{
+        color: white;
+        font-size: 1.5rem; 
+        padding-left:0;
+    }
+    
+    a{
+        font-size: 1.5rem;
+        color: white;
+        text-decoration: underline;
+    }
+
+    ::-webkit-input-placeholder {
+        color: white !important; 
+    }
+}

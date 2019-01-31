@@ -1,0 +1,34 @@
+<ion-header>
+  <ion-row class="header" align-items-center>
+    <h1>ArduLock</h1>
+    <button class="navbarBtn" (click)="add()"> 
+      <ion-icon name="add"></ion-icon>
+    </button>
+  </ion-row>
+</ion-header>
+
+
+<ion-content>
+  <h2 *ngIf="labelFirst == undefined" >Non ci sono dispositivi associati</h2>
+  <div class="content" *ngIf="labelFirst != undefined">
+    <ion-row class="element" align-items-center>
+      <p class="label"> {{this.labelFirst}} </p>
+      <ion-toggle [(ngModel)]="statusFirst"  color="secondary" (ionChange)="getPassowrd()"></ion-toggle>
+    </ion-row>
+    <ion-row class="separator"></ion-row>
+    <ion-row class="element" align-items-center>
+      <p class="label">{{this.labelSecond}}</p>
+      <ion-toggle [(ngModel)]="statusSecond" color="secondary" (ionChange)="getPassowrd()"></ion-toggle>
+    </ion-row>
+    <ion-row class="separator"></ion-row>
+  </div>
+  <ion-row *ngIf="labelFirst != undefined" class="bottomBar">
+    <button (click)="lock()">
+      <ion-icon *ngIf="!(statusFirst&&statusSecond)"  name="lock"></ion-icon>
+      <ion-icon *ngIf="statusFirst&&statusSecond" name="unlock"></ion-icon>
+    </button>
+    <button (click)="log()">
+        <ion-icon name="list-box"></ion-icon>
+    </button>
+  </ion-row>
+</ion-content>
