@@ -23,6 +23,7 @@ export class HomePage {
   statusFirst;
   statusSecond;
   password = "";
+  changing = false;
 
   ionViewDidEnter(){
     this.getToken();
@@ -62,28 +63,31 @@ export class HomePage {
   }
 
   add(){
-    if(this.password != ''){
-      this.alert = this.alertController.create({
-        title: 'Inserisci la password di sicurezza',
-        buttons: [{
-                  text:'Conferma',
-                  handler: data => { this.password = data.password },
-                }],
-        inputs: [
-          {
-            name: 'password',
-            placeholder: 'Password',
-            type: 'password',
-          }
-        ],
-      });
-      this.alert.onDidDismiss(()=>{
-        this.navCtrl.push(CheckSetupPage);
-      });
-      if(this.password=="") this.alert.present();
+    if(!this.changing){
+      this.changing=true;
+      if(this.password != ''){
+        this.alert = this.alertController.create({
+          title: 'Inserisci la password di sicurezza',
+          buttons: [{
+                    text:'Conferma',
+                    handler: data => { this.password = data.password },
+                  }],
+          inputs: [
+            {
+              name: 'password',
+              placeholder: 'Password',
+              type: 'password',
+            }
+          ],
+        });
+        this.alert.onDidDismiss(()=>{
+          this.navCtrl.push(CheckSetupPage);
+        });
+        if(this.password=="") this.alert.present();
+        else this.navCtrl.push(CheckSetupPage);
+      }
       else this.navCtrl.push(CheckSetupPage);
     }
-    else this.navCtrl.push(CheckSetupPage);
   }
 
   getPassowrd(){
@@ -122,7 +126,7 @@ export class HomePage {
     };
 
     let request = this.http.post('http://3.89.126.2:5000/Api/App/setStatus',body,{headers:headers});
-      request.subscribe(() => {}, (error) => {
+      request.subscribe(() => {this.changing=false}, (error) => {
         let alert2;
         if(error.status = 400){
           alert2 =  this.alertController.create({
